@@ -29,10 +29,11 @@ const Signin = async (req, res) => {
         msg: "Provided email or password does'nt exists..!!",
       });
     }
-    // const userid = user._id;
-    // const token = jwt.sign({ userid }, JWT_SECRET);
+    const userid = user._id;
+    const token = jwt.sign({ userid }, JWT_SECRET);
     res.status(200).json({
       msg: "User signed in succesfully",
+      token: token,
     });
   } catch (err) {
     res.status(411).json({

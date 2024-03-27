@@ -5,14 +5,13 @@ import { Profile } from "./Profile";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { InputBox } from "./InputBox";
+import { server } from "../main";
 export const User = () => {
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
   useEffect(() => {
     const fetchUsers = async () => {
-      const res = await axios.get(
-        `http://localhost:3000/api/v1/user/bulk?filter=${filter}`
-      );
+      const res = await axios.get(`${server}/user/bulk?filter=${filter}`);
       setUsers(res.data.users);
     };
     fetchUsers();

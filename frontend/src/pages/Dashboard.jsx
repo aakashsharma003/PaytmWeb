@@ -3,19 +3,17 @@ import { Appbar } from "../components/Appbar";
 import { User } from "../components/User";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { server } from "../main";
 
 const Dashboard = () => {
   const [balance, setBalance] = useState();
   useEffect(() => {
     const fetchBalance = async () => {
-      const res = await axios.get(
-        "http://localhost:3000/api/v1/account/balance",
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const res = await axios.get(`${server}/account/balance`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       setBalance(res.data.balance);
       toast.success("Balance fetched successfully");
     };

@@ -6,6 +6,7 @@ import Heading from "../components/Heading";
 import { InputBox } from "../components/InputBox";
 import { Profile } from "../components/Profile";
 import toast from "react-hot-toast";
+import { server } from "../main";
 const SendMoney = () => {
   const [searchParams] = useSearchParams();
   const [amount, setAmount] = useState();
@@ -35,7 +36,7 @@ const SendMoney = () => {
             try {
               axios
                 .post(
-                  "http://localhost:3000/api/v1/account/transfermoney",
+                  `${server}/account/transfermoney`,
                   {
                     to: id,
                     amount: amount,

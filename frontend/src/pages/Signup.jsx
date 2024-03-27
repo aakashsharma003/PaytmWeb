@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BottomWarning } from "../components/BottomWarning";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
@@ -7,12 +7,20 @@ import { SubHeading } from "../components/SubHeading";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { server } from "../main";
 const Signup = () => {
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  useEffect(() => {
+    const logout = () => {
+      localStorage.removeItem("token");
+      toast.success("logout successfully");
+    };
+    logout();
+  }, []);
   return (
     <div className="w-screen h-screen bg-[#cbd5e1] flex justify-center items-center">
       <div className="bg-white w-[80dvw] h-[90dvh] md:w-[50dvw] md:h-[90dvh] md:px-[1dvw] md:py-[1dvh] px-[4dvw] shadow-gray shadow-lg shadow-gray-800/70 rounded-md">
@@ -56,20 +64,17 @@ const Signup = () => {
             color={"black"}
             onClick={async () => {
               try {
-                const response = await axios.post(
-                  "http://localhost:3000/api/v1/user/signup",
-                  {
-                    first_name: firstName,
-                    last_name: lastName,
-                    username: username,
-                    password: password,
-                  }
-                );
+                const response = await axios.post(`${server}/user/signup`, {
+                  first_name: firstName,
+                  last_name: lastName,
+                  username: username,
+                  password: password,
+                });
                 toast.success(response.data.msg);
                 localStorage.setItem("token", response.data.token);
                 navigate("/dashboard");
               } catch (err) {
-                toast.error(err);
+                toast.error("Internal server error");
                 console.log(err);
               }
             }}
