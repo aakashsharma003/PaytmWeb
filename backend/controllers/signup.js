@@ -44,11 +44,13 @@ const SignUp = async (req, res) => {
       balance: Math.floor(1 + Math.random() * 10000),
     });
     const userid = newUser._id;
+    const name = first_name + " " + last_name;
     const token = jwt.sign({ userid }, JWT_SECRET);
     res.status(200).json({
       msg: "User created successfully",
       userId: userid,
       token: token,
+      name: name,
     });
   } catch (error) {
     res.status(411).json({ error: error.message });

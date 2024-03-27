@@ -17,6 +17,7 @@ const Signup = () => {
   useEffect(() => {
     const logout = () => {
       localStorage.removeItem("token");
+      localStorage.removeItem("name");
       toast.success("logout successfully");
     };
     logout();
@@ -72,9 +73,10 @@ const Signup = () => {
                 });
                 toast.success(response.data.msg);
                 localStorage.setItem("token", response.data.token);
+                localStorage.setItem("name", response.data.name);
                 navigate("/dashboard");
               } catch (err) {
-                toast.error("Internal server error");
+                toast.error(err.response.data.msg);
                 console.log(err);
               }
             }}

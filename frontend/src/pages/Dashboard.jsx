@@ -6,7 +6,11 @@ import toast from "react-hot-toast";
 import { server } from "../main";
 
 const Dashboard = () => {
+  const [name, setName] = useState("");
   const [balance, setBalance] = useState();
+  useEffect(() => {
+    setName(localStorage.getItem("name"));
+  }, []);
   useEffect(() => {
     const fetchBalance = async () => {
       const res = await axios.get(`${server}/account/balance`, {
@@ -22,7 +26,7 @@ const Dashboard = () => {
   return (
     <div className="w-screen h-screen bg-white flex justify-center items-center box-border">
       <div className="bg-white w-full h-full rounded-md overflow-x-hidden">
-        <Appbar user={"Akash"} profile={"A"} />
+        <Appbar user={name} profile={name[0]} />
         <div className="w-full h-[5dvh] font-bold flex justify-start items-center p-[2%]">
           Your balance Rs {balance}
         </div>

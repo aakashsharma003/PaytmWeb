@@ -15,6 +15,7 @@ const Signin = () => {
   useEffect(() => {
     const logout = () => {
       localStorage.removeItem("token");
+      localStorage.removeItem("name");
       toast.success("logout successfully");
     };
     logout();
@@ -47,6 +48,7 @@ const Signin = () => {
               .then((res) => {
                 toast.success(res.data.msg);
                 localStorage.setItem("token", res.data.token);
+                localStorage.setItem("name", res.data.name);
                 navigate("/dashboard");
               })
               .catch((err) => {
