@@ -30,7 +30,7 @@ const Signin = async (req, res) => {
       });
     }
     const userid = user._id;
-    const name = user.first_name + " " + user.last_name;
+    const name = user.first_name;
     const token = jwt.sign({ userid }, JWT_SECRET);
     res.status(200).json({
       msg: "User signed in succesfully",
