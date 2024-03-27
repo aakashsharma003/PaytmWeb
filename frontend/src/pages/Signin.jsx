@@ -50,7 +50,7 @@ const Signin = () => {
                 navigate("/dashboard");
               })
               .catch((err) => {
-                toast.error("internal server error");
+                toast.error(err.response.data.msg);
                 console.log(err);
               });
           }}
