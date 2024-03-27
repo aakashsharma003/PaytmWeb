@@ -15,12 +15,13 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
+    const token = localStorage.getItem("token");
     const logout = () => {
       localStorage.removeItem("token");
       localStorage.removeItem("name");
       toast.success("logout successfully");
     };
-    logout();
+    if (token != null) logout();
   }, []);
   return (
     <div className="w-screen h-screen bg-[#cbd5e1] flex justify-center items-center">

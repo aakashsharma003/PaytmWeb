@@ -56,7 +56,8 @@ const SendMoney = () => {
                   throw err;
                 });
             } catch (err) {
-              toast.error(err);
+              toast.error(err.response.data.msg);
+              console.log(err);
             }
           }}
           innertext={"Initiate Transfer"}

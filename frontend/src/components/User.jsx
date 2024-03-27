@@ -26,14 +26,15 @@ export const User = () => {
         placeholder={"Search users"}
       />
       {users.map((user) => {
-        return (
-          <AllUsers
-            profile={user.first_name.substr(0, 1)}
-            name={user.first_name}
-            key={user.user_id}
-            id={user.user_id}
-          />
-        );
+        if (user.first_name != localStorage.getItem("name"))
+          return (
+            <AllUsers
+              profile={user.first_name.substr(0, 1)}
+              name={user.first_name}
+              key={user.user_id}
+              id={user.user_id}
+            />
+          );
       })}
     </>
   );
