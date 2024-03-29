@@ -33,36 +33,28 @@ const SendMoney = () => {
         />
         <Button
           onClick={() => {
-            try {
-              axios
-                .post(
-                  `${server}/account/transfermoney`,
-                  {
-                    to: id,
-                    amount: amount,
+            axios
+              .post(
+                `${server}/account/transfermoney`,
+                {
+                  to: id,
+                  amount: amount,
+                },
+                {
+                  headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
                   },
-                  {
-                    headers: {
-                      Authorization: "Bearer " + localStorage.getItem("token"),
-                    },
-                  }
-                )
-                .then((res) => {
-                  toast.success(res.data.message);
-                  console.log(res.data.message);
-                  navigate("/dashboard");
-                })
-                .catch((err) => {
-                  throw err;
-                });
-            } catch (err) {
-              if (err.response.data.message)
+                }
+              )
+              .then((res) => {
+                toast.success(res.data.message);
+                // console.log(res.data.message);
+                navigate("/dashboard");
+              })
+              .catch((err) => {
                 toast.error(err.response.data.message);
-              else {
-                toast.error("Our server is busy right now");
-              }
-              console.log(err);
-            }
+                throw err;
+              });
           }}
           innertext={"Initiate Transfer"}
           color={"#21c55d"}
