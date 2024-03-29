@@ -58,7 +58,7 @@ const Signup = () => {
               setPassword(e.target.value);
             }}
             label="Password"
-            placeholder="ayushiakash@123"
+            placeholder="ayushi@123"
             type="password"
           />
           <Button
@@ -72,13 +72,16 @@ const Signup = () => {
                   username: username,
                   password: password,
                 });
-                toast.success(response.data.msg);
+                toast.success(response.data.message);
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("name", response.data.name);
                 navigate("/dashboard");
               } catch (err) {
-                toast.error(err.response.data.msg);
-                console.log(err);
+                if (err.response.data.message)
+                  toast.error(err.response.data.message);
+                else {
+                  toast.error("Internal server Error");
+                }
               }
             }}
           />

@@ -6,13 +6,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { InputBox } from "./InputBox";
 import { server } from "../main";
+import toast from "react-hot-toast";
 export const User = () => {
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
   useEffect(() => {
     const fetchUsers = async () => {
-      const res = await axios.get(`${server}/user/bulk?filter=${filter}`);
-      setUsers(res.data.users);
+      try {
+        const res = await axios.get(`${server}/user/bulk?filter=${filter}`);
+        setUsers(res.data.users);
+      } catch (err) {
+        if (err.response.data.message) toast.error(err.response.data.message);
+        else {
+          toast.error("Internal server Error");
+        }
+      }
     };
     fetchUsers();
   }, [filter]);

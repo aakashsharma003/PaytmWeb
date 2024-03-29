@@ -56,8 +56,11 @@ const Signin = () => {
                 navigate("/dashboard");
               })
               .catch((err) => {
-                toast.error(err.response.data.msg);
-                console.log(err);
+                if (err.response.data.message)
+                  toast.error(err.response.data.message);
+                else {
+                  toast.error("Internal server Error");
+                }
               });
           }}
           innertext={"Signin"}

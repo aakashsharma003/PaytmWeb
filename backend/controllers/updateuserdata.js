@@ -11,7 +11,7 @@ const updateUserData = async (req, res) => {
   const { success } = updatedBody.safeParse(req.body);
   if (!success) {
     res.status(411).json({
-      msg: "Error while updating Information",
+      message: "Error while updating Information",
     });
   }
   try {

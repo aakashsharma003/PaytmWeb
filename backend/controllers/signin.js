@@ -19,21 +19,21 @@ const Signin = async (req, res) => {
     // console.log(username, password);
     if (!success) {
       return res.status(404).json({
-        msg: "incorrect inputs",
+        message: "incorrect inputs",
       });
     }
     console.log("User Validated Successfully");
     const user = await User.findOne({ username, password });
     if (!user) {
       return res.status(404).json({
-        msg: "Provided email or password does'nt exists..!!",
+        message: "Provided email or password does'nt exists..!!",
       });
     }
     const userid = user._id;
     const name = user.first_name;
     const token = jwt.sign({ userid }, JWT_SECRET);
     res.status(200).json({
-      msg: "User signed in succesfully",
+      message: "User signed in succesfully",
       token: token,
       name: name,
     });

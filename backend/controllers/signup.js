@@ -22,14 +22,14 @@ const SignUp = async (req, res) => {
     const { first_name, last_name, username, password } = validatedInput.data;
     if (!validatedInput.success) {
       return res.status(404).json({
-        msg: "inputs Validation failed",
+        message: "inputs Validation failed",
       });
     }
     console.log("User Validated Successfully");
     const existingUser = await User.findOne({ username, first_name });
     if (existingUser) {
       return res.status(411).json({
-        msg: "Name or Email already exists",
+        message: "Name or Email already exists",
       });
     }
 
@@ -47,7 +47,7 @@ const SignUp = async (req, res) => {
     const name = first_name;
     const token = jwt.sign({ userid }, JWT_SECRET);
     res.status(200).json({
-      msg: "User created successfully",
+      message: "User created successfully",
       userId: userid,
       token: token,
       name: name,

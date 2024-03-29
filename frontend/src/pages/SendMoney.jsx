@@ -56,7 +56,11 @@ const SendMoney = () => {
                   throw err;
                 });
             } catch (err) {
-              toast.error(err.response.data.msg);
+              if (err.response.data.message)
+                toast.error(err.response.data.message);
+              else {
+                toast.error("Our server is busy right now");
+              }
               console.log(err);
             }
           }}

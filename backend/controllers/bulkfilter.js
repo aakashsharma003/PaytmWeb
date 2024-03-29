@@ -13,7 +13,7 @@ const filter = async (req, res) => {
     // console.log(users);
     if (users.length == 0) {
       return res.json({
-        msg: "Not Found",
+        message: "Not Found",
       });
     } else
       res.json({
