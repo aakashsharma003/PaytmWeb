@@ -28,7 +28,7 @@ const authMiddleware = async (req, res, next) => {
     // console.log(req.userId); // This should log the userId
     next();
   } catch (err) {
-    return res.status(403).json({ msg: err.message });
+    return res.status(403).json({ message: err.message });
   }
 };
 

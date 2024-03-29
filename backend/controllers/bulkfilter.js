@@ -14,6 +14,7 @@ const filter = async (req, res) => {
     if (users.length == 0) {
       return res.json({
         message: "Not Found",
+        data: [],
       });
     } else
       res.json({

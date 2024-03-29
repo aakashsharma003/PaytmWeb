@@ -14,16 +14,19 @@ export const User = () => {
     const fetchUsers = async () => {
       try {
         const res = await axios.get(`${server}/user/bulk?filter=${filter}`);
+        if (res.data.users.length === 0) {
+          toast.error("No user found");
+        }
         setUsers(res.data.users);
       } catch (err) {
-        if (err.response.data.message) toast.error(err.response.data.message);
-        else {
-          toast.error("Internal server Error");
-        }
+        toast.error("No user found");
       }
     };
     fetchUsers();
   }, [filter]);
+  const filteredUsers = users.filter(
+    (user) => user.first_name !== localStorage.getItem("name")
+  );
   return (
     <>
       <InputBox
@@ -33,23 +36,23 @@ export const User = () => {
         }}
         placeholder={"Search users"}
       />
-      {users.map((user) => {
-        if (user.first_name != localStorage.getItem("name"))
-          return (
-            <AllUsers
-              profile={user.first_name.substr(0, 1)}
-              name={user.first_name}
-              key={user.user_id}
-              id={user.user_id}
-            />
-          );
+
+      {filteredUsers.map((user) => {
+        return (
+          <AllUsers
+            profile={user.first_name.substr(0, 1)}
+            name={user.first_name}
+            key={user.user_id}
+            id={user.user_id}
+          />
+        );
       })}
     </>
   );
 };
 
 function AllUsers({ profile, name, id }) {
-  console.log(id);
+  // console.log(id);
   const navigate = useNavigate();
   return (
     <div className="w-full h-[5%] flex justify-between items-center">

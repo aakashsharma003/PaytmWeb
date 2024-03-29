@@ -8,7 +8,7 @@ export const InputBox = ({ label, placeholder, type, onChange }) => {
         onChange={onChange}
         type={type}
         name="name"
-        id="label"
+        id={label}
         placeholder={placeholder}
         className="focus:outline-none flex fex-col w-full px-[1dvh] py-[1dvh] md:py-[0.5dvw] border-2 border-gray-300 rounded-[8px] "
       />

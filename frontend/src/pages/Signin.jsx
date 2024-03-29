@@ -39,6 +39,7 @@ const Signin = () => {
           onChange={(e) => {
             setPassword(e.target.value);
           }}
+          type={"password"}
           label={"Password"}
           placeholder={"12345678"}
         />
@@ -50,7 +51,7 @@ const Signin = () => {
                 password,
               })
               .then((res) => {
-                toast.success(res.data.msg);
+                toast.success(res.data.message);
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("name", res.data.name);
                 navigate("/dashboard");
