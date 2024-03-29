@@ -5,9 +5,11 @@ const Account = require("../models/accounts");
 
 // console.log(typeof process.env.MONGO_URL);
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(process.env.MONGO_URI, {
+    dbName: "PaytmWeb",
+  })
   .then((c) => {
-    console.log("database connected");
+    console.log(`Database connected with ${c.connection.host}`);
   })
   .catch((err) => {
     console.error(err);
