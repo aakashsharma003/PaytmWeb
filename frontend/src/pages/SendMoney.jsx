@@ -4,6 +4,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
 import { InputBox } from "../components/InputBox";
+import PaymentTone from "/paytm_payment_tune.mp3";
+import useSound from "use-sound";
 import { Profile } from "../components/Profile";
 import toast from "react-hot-toast";
 import { server } from "../main";
@@ -13,6 +15,7 @@ const SendMoney = () => {
   const navigate = useNavigate();
   const id = searchParams.get("id");
   const name = searchParams.get("name");
+  const [playActive] = useSound(PaymentTone);
   // console.log(id, name);
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-[#f3f4f6]">
@@ -32,9 +35,9 @@ const SendMoney = () => {
           placeholder={"Enter amount"}
         />
         <Button
-          onClick={() => {
-            axios
-              .post(
+          onClick={async () => {
+            try {
+              const res = await axios.post(
                 `${server}/account/transfermoney`,
                 {
                   to: id,
@@ -45,16 +48,23 @@ const SendMoney = () => {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                   },
                 }
-              )
-              .then((res) => {
-                toast.success(res.data.message);
-                // console.log(res.data.message);
-                navigate("/dashboard");
-              })
-              .catch((err) => {
-                toast.error(err.response.data.message);
-                throw err;
+              );
+
+              await new Promise((resolve) => {
+                playActive();
+                resolve();
               });
+
+              await new Promise((resolve) => {
+                toast.success(res.data.message);
+                resolve();
+              });
+
+              navigate("/dashboard");
+            } catch (err) {
+              toast.error(err.response.data.message); // Show error message
+              console.error(err);
+            }
           }}
           innertext={"Initiate Transfer"}
           color={"#21c55d"}
