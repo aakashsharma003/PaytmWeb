@@ -17,9 +17,50 @@ const SendMoney = () => {
   const name = searchParams.get("name");
   const [playActive] = useSound(PaymentTone);
   // console.log(id, name);
+  const PaymentHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `${server}/account/transfermoney`,
+        {
+          to: id,
+          amount: amount,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+
+      new Promise((resolve) => {
+        // setTimeout(() => {
+        playActive();
+        // console.log("playing");
+
+        setTimeout(() => {
+          resolve();
+        }, 2000);
+        // }, 2000);
+      }).then(function () {
+        // console.log("aa gye");
+        toast.success(res.data.message);
+        navigate("/dashboard", {
+          state: { data: res.data },
+          replace: true,
+        });
+      });
+    } catch (err) {
+      toast.error(err.response.data.message);
+      console.error(err);
+    }
+  };
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-[#f3f4f6]">
-      <div className="w-[80dvw] h-[50dvh] md:w-[50dvw] md:h-[60dvh] bg-white px-[3dvw] py-[3dvh] rounded-md shadow-gray shadow-lg shadow-gray-800/70 ">
+    <div className="w-screen h-screen flex justify-center items-center ">
+      <form
+        className="w-[80vw] h-[50vh] md:w-[50vw] md:h-[60vh] bg-white px-[3vw] py-[3vh] rounded-md shadow-gray shadow-lg shadow-gray-800/70"
+        onSubmit={PaymentHandler}
+      >
         <Heading label={"Send Money"} />
         <div className="flex">
           <Profile profile={"A"} color={"#21c55d"} />
@@ -28,6 +69,7 @@ const SendMoney = () => {
           </div>
         </div>
         <InputBox
+          type="number"
           onChange={(e) => {
             setAmount(e.target.value);
           }}
@@ -35,42 +77,11 @@ const SendMoney = () => {
           placeholder={"Enter amount"}
         />
         <Button
-          onClick={async () => {
-            try {
-              const res = await axios.post(
-                `${server}/account/transfermoney`,
-                {
-                  to: id,
-                  amount: amount,
-                },
-                {
-                  headers: {
-                    Authorization: "Bearer " + localStorage.getItem("token"),
-                  },
-                }
-              );
-
-              await new Promise((resolve) => {
-                playActive();
-                resolve();
-              });
-
-              await new Promise((resolve) => {
-                toast.success(res.data.message);
-                resolve();
-              });
-
-              navigate("/dashboard");
-            } catch (err) {
-              toast.error(err.response.data.message); // Show error message
-              console.error(err);
-            }
-          }}
           innertext={"Initiate Transfer"}
           color={"#21c55d"}
           render={"send"}
         />
-      </div>
+      </form>
     </div>
   );
 };

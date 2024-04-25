@@ -1,12 +1,13 @@
-const Button = ({ innertext, color, onClick }) => {
+const Button = ({ type, innertext, color, onClick, width }) => {
   return (
-    <div
+    <button
       onClick={onClick}
       className=" px-[2dvw] py-[2dvh]  text-white text-center rounded-[8px] cursor-pointer"
-      style={{ backgroundColor: color }}
+      type={type}
+      style={{ backgroundColor: color, width: width }}
     >
       {innertext}
-    </div>
+    </button>
   );
 };
 export default Button;

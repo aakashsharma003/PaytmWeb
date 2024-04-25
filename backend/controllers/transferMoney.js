@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
 const { Account } = require("../data/db");
+const { User } = require("../data/db");
 const transferMoney = async (req, res) => {
   const session = await mongoose.startSession();
 
   session.startTransaction();
 
   const { to, amount } = req.body;
-
+  // if (isNaN(amount)) res.send({ message: "Pls Enter a valid Input" });
   const userId = req.userId;
+  const user = await User.findOne({ _id: userId });
+  const name = user.first_name + " " + user.last_name;
+
   const fromAccount = await Account.findOne({ userId: userId }).session(
     session
   );
@@ -42,7 +46,7 @@ const transferMoney = async (req, res) => {
   ).session(session);
   // Commiting the transaction
   await session.commitTransaction();
-  res.json({ message: "transfered Succesfully" });
+  res.json({ message: "transfered Succesfully", name });
 };
 
 module.exports = transferMoney;

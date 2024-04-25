@@ -7,9 +7,12 @@ import axios from "axios";
 import { InputBox } from "./InputBox";
 import { server } from "../main";
 import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 export const User = () => {
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
+  const location = useLocation();
+  const name = location.state.data.name;
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -24,9 +27,7 @@ export const User = () => {
     };
     fetchUsers();
   }, [filter]);
-  const filteredUsers = users.filter(
-    (user) => user.first_name !== localStorage.getItem("name")
-  );
+  const filteredUsers = users.filter((user) => user.first_name !== name);
   return (
     <>
       <InputBox

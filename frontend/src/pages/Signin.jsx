@@ -44,25 +44,25 @@ const Signin = () => {
           placeholder={"12345678"}
         />
         <Button
-          onClick={() => {
-            axios
-              .post(`${server}/user/signin`, {
+          onClick={async () => {
+            try {
+              const res = await axios.post(`${server}/user/signin`, {
                 username,
                 password,
-              })
-              .then((res) => {
-                toast.success(res.data.message);
-                localStorage.setItem("token", res.data.token);
-                localStorage.setItem("name", res.data.name);
-                navigate("/dashboard");
-              })
-              .catch((err) => {
-                if (err.response.data.message)
-                  toast.error(err.response.data.message);
-                else {
-                  toast.error("Internal server Error");
-                }
               });
+              toast.success(res.data.message);
+              localStorage.setItem("token", res.data.token);
+              navigate("/dashboard", {
+                state: { data: res.data },
+                replace: true,
+              });
+            } catch (err) {
+              if (err.response.data.message)
+                toast.error(err.response.data.message);
+              else {
+                toast.error("Internal server Error");
+              }
+            }
           }}
           innertext={"Signin"}
           color={"black"}

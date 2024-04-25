@@ -26,7 +26,29 @@ const Signup = () => {
   return (
     <div className="w-screen h-screen bg-[#cbd5e1] flex justify-center items-center">
       <div className="bg-white w-[80dvw] h-[90dvh] md:w-[50dvw] md:h-[90dvh] md:px-[1dvw] md:py-[1dvh] px-[4dvw] shadow-gray shadow-lg shadow-gray-800/70 rounded-md">
-        <div className="w-full h-full flex justify-between flex-col py-2 px-2 ">
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault();
+            try {
+              const res = await axios.post(`${server}/user/signup`, {
+                first_name: firstName,
+                last_name: lastName,
+                username,
+                password,
+              });
+              toast.success(res.data.message);
+              localStorage.setItem("token", res.data.token);
+              navigate("/dashboard", {
+                state: { data: res.data },
+                replace: true,
+              });
+            } catch (err) {
+              console.error(err);
+              toast.error(err.response.data.message);
+            }
+          }}
+          className="w-full h-full flex justify-between flex-col py-2 px-2 "
+        >
           <Heading label="Signup" />
           <SubHeading label="Enter your information to create an account" />
           <InputBox
@@ -36,6 +58,7 @@ const Signup = () => {
             label="First Name"
             placeholder="Akash"
             type="text"
+            required={"required"}
           />
           <InputBox
             onChange={(e) => {
@@ -52,6 +75,7 @@ const Signup = () => {
             label="Username"
             placeholder="akashsharma@gmail.com"
             type="email"
+            required={"required"}
           />
           <InputBox
             onChange={(e) => {
@@ -60,37 +84,15 @@ const Signup = () => {
             label="Password"
             placeholder="ayushi@123"
             type="password"
+            required={"required"}
           />
-          <Button
-            innertext={"Sign up"}
-            color={"black"}
-            onClick={async () => {
-              try {
-                const response = await axios.post(`${server}/user/signup`, {
-                  first_name: firstName,
-                  last_name: lastName,
-                  username: username,
-                  password: password,
-                });
-                toast.success(response.data.message);
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("name", response.data.name);
-                navigate("/dashboard");
-              } catch (err) {
-                if (err.response.data.message)
-                  toast.error(err.response.data.message);
-                else {
-                  toast.error("Internal server Error");
-                }
-              }
-            }}
-          />
+          <Button type={"submit"} innertext={"Sign up"} color={"black"} />
           <BottomWarning
             label={"Already have an account?"}
             renderheading={"Signin"}
             render={"signin"}
           />
-        </div>
+        </form>
       </div>
     </div>
   );

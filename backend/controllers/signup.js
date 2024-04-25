@@ -26,10 +26,10 @@ const SignUp = async (req, res) => {
       });
     }
     console.log("User Validated Successfully");
-    const existingUser = await User.findOne({ username, first_name });
+    const existingUser = await User.findOne({ username });
     if (existingUser) {
       return res.status(411).json({
-        message: "Name or Email already exists",
+        message: "Provided Email is already registered.!!",
       });
     }
 
@@ -50,7 +50,7 @@ const SignUp = async (req, res) => {
       message: "User created successfully",
       userId: userid,
       token: token,
-      name: name,
+      name: first_name + " " + last_name,
     });
   } catch (error) {
     res.status(411).json({ error: error.message });
