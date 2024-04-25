@@ -27,7 +27,11 @@ export const User = () => {
     };
     fetchUsers();
   }, [filter]);
-  const filteredUsers = users.filter((user) => user.first_name !== name);
+
+  const filteredUsers = users.filter((user) => {
+    const Name = user.first_name + " " + user.last_name;
+    return Name !== name;
+  });
   return (
     <>
       <InputBox
@@ -42,7 +46,7 @@ export const User = () => {
         return (
           <AllUsers
             profile={user.first_name.substr(0, 1)}
-            name={user.first_name}
+            name={user.first_name + " " + user.last_name}
             key={user.user_id}
             id={user.user_id}
           />

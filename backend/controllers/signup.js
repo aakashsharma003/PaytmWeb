@@ -21,8 +21,12 @@ const SignUp = async (req, res) => {
     const validatedInput = UserSchema.safeParse(req.body);
     const { first_name, last_name, username, password } = validatedInput.data;
     if (!validatedInput.success) {
-      return res.status(404).json({
-        message: "inputs Validation failed",
+      const errorMessages = validatedInput.error.errors.map(
+        (error) => error.message
+      );
+      return res.status(400).json({
+        message: "Input validation failed",
+        errors: errorMessages, // Pass error messages to the frontend
       });
     }
     console.log("User Validated Successfully");
@@ -53,7 +57,8 @@ const SignUp = async (req, res) => {
       name: first_name + " " + last_name,
     });
   } catch (error) {
-    res.status(411).json({ error: error.message });
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 module.exports = SignUp;
