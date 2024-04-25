@@ -80,6 +80,7 @@ const SendMoney = () => {
           innertext={"Initiate Transfer"}
           color={"#21c55d"}
           render={"send"}
+          width={"100%"}
         />
       </form>
     </div>

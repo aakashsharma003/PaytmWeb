@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Profile } from "./Profile";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
-import Signin from "../pages/Signin";
 
 export const Appbar = ({ user, profile }) => {
   const [menubutton, setmenubutton] = useState(false);
