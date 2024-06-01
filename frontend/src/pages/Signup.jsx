@@ -72,7 +72,7 @@ const Signup = () => {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
-            label="Username"
+            label="Email"
             placeholder="akashsharma@gmail.com"
             type="email"
             required={"required"}

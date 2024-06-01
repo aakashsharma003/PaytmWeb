@@ -32,7 +32,7 @@ const Signin = () => {
           onChange={(e) => {
             setUsername(e.target.value);
           }}
-          label={"Username"}
+          label={"Email"}
           placeholder={"aakash6263264@gmail.com"}
         />
         <InputBox

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Profile } from "./Profile";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const Appbar = ({ user, profile }) => {
   const [menubutton, setmenubutton] = useState(false);
@@ -27,7 +28,7 @@ export const Appbar = ({ user, profile }) => {
         </div>
       )}
       {menubutton && (
-        <div className="flex flex-col justify-between items-center h-[22dvh] bg-gray-200 rounded-md px-[2dvw] py-[2dvh]">
+        <div className="flex flex-col justify-between items-center h-[26vh] bg-gray-200 rounded-md px-[2vw] py-[2vh]">
           <div className="flex justify-center items-center">
             <Profile
               profile={profile}
@@ -44,6 +45,7 @@ export const Appbar = ({ user, profile }) => {
             color={"black"}
             onClick={() => {
               localStorage.removeItem("token");
+              toast.success("logout Successfully");
               navigate("/signin");
             }}
             width={"100%"}
