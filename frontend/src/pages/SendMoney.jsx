@@ -9,16 +9,21 @@ import useSound from "use-sound";
 import { Profile } from "../components/Profile";
 import toast from "react-hot-toast";
 import { server } from "../main";
+import CircularProgress from "@mui/material/CircularProgress"; // Importing CircularProgress
+import Box from "@mui/material/Box"; // Importing Box for centering the loader
+
 const SendMoney = () => {
   const [searchParams] = useSearchParams();
   const [amount, setAmount] = useState();
+  const [loading, setLoading] = useState(false); // Loading state
   const navigate = useNavigate();
   const id = searchParams.get("id");
   const name = searchParams.get("name");
   const [playActive] = useSound(PaymentTone);
-  // console.log(id, name);
+
   const PaymentHandler = async (e) => {
     e.preventDefault();
+    setLoading(true); // Show loading animation
     try {
       const res = await axios.post(
         `${server}/account/transfermoney`,
@@ -34,16 +39,11 @@ const SendMoney = () => {
       );
 
       new Promise((resolve) => {
-        // setTimeout(() => {
         playActive();
-        // console.log("playing");
-
         setTimeout(() => {
           resolve();
         }, 2000);
-        // }, 2000);
       }).then(function () {
-        // console.log("aa gye");
         toast.success(res.data.message);
         navigate("/dashboard", {
           state: { data: res.data },
@@ -53,10 +53,31 @@ const SendMoney = () => {
     } catch (err) {
       toast.error(err.response.data.message);
       console.error(err);
+    } finally {
+      setLoading(false); // Hide loading animation
     }
   };
+
   return (
-    <div className="w-screen h-screen flex justify-center items-center ">
+    <div className="w-screen h-screen flex justify-center items-center relative">
+      {loading && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            zIndex: 50,
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       <form
         className="w-[80vw] h-[50vh] md:w-[50vw] md:h-[60vh] bg-white px-[3vw] py-[3vh] rounded-md shadow-gray shadow-lg shadow-gray-800/70"
         onSubmit={PaymentHandler}
@@ -64,7 +85,7 @@ const SendMoney = () => {
         <Heading label={"Send Money"} />
         <div className="flex">
           <Profile profile={"A"} color={"#21c55d"} />
-          <div className="flex justify-center items-center font- bold">
+          <div className="flex justify-center items-center font-bold ml-2">
             {name}
           </div>
         </div>

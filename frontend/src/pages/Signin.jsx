@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BottomWarning } from "../components/BottomWarning";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
@@ -6,15 +6,18 @@ import { InputBox } from "../components/InputBox";
 import { server } from "../main";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress"; // Importing CircularProgress
+import Box from "@mui/material/Box"; // Importing Box for centering the loader
+
 const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state
   const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
-    // console.log(token);
     const logout = () => {
       localStorage.removeItem("token");
       localStorage.removeItem("name");
@@ -24,10 +27,29 @@ const Signin = () => {
       logout();
     }
   }, []);
+
   return (
-    <div className="w-screen h-screen bg-[#cbd5e1] flex justify-center items-center">
-      <div className="bg-white  rounded-md w-[80dvw] h-[60dvh] md:h-[70dvh] md:w-[60dvw] shadow-gray shadow-lg shadow-gray-800/70 px-[2dvw] py-[2dvh] flex flex-col justify-between">
-        <Heading label={"Sigin"} />
+    <div className="w-screen h-screen bg-[#cbd5e1] flex justify-center items-center relative">
+      {loading && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            zIndex: 50,
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
+      <div className="bg-white rounded-md w-[80dvw] h-[60dvh] md:h-[70dvh] md:w-[60dvw] shadow-gray shadow-lg shadow-gray-800/70 px-[2dvw] py-[2dvh] flex flex-col justify-between">
+        <Heading label={"Signin"} />
         <InputBox
           onChange={(e) => {
             setUsername(e.target.value);
@@ -45,6 +67,7 @@ const Signin = () => {
         />
         <Button
           onClick={async () => {
+            setLoading(true); // Show loading animation
             try {
               const res = await axios.post(`${server}/user/signin`, {
                 username,
@@ -62,6 +85,8 @@ const Signin = () => {
               else {
                 toast.error("Internal server Error");
               }
+            } finally {
+              setLoading(false); // Hide loading animation
             }
           }}
           innertext={"Signin"}

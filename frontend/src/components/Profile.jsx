@@ -10,10 +10,10 @@ export const Profile = ({ profile, color, onClick }) => {
         justifyContent: "center",
         borderRadius: "50%",
         backgroundColor: color,
-        paddingX: { xs: "3vw", md: "1.8vw" },
-        paddingY: { xs: "0.85vh", md: "2vh" },
-        marginX: "1vw",
-        marginY: "2vh",
+        paddingX: { xs: "8%", sm: "5%", md: "4%", lg: "4%" },
+        paddingY: { xs: "8%", sm: "5%", md: "4%", lg: "4%" },
+        marginX: "1%",
+        marginY: "2%",
         textTransform: "uppercase",
         cursor: "pointer",
       }}
@@ -22,11 +22,21 @@ export const Profile = ({ profile, color, onClick }) => {
       <Avatar
         sx={{
           bgcolor: color,
-          width: { xs: "10vw", md: "2vw" },
+          width: { xs: "10vw", md: "3vw" },
           height: { xs: "10vw", md: "3vw" },
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden", // To ensure text does not overflow
         }}
       >
-        <Typography variant="subtitle1">{profile}</Typography>
+        <Typography
+          variant="subtitle1"
+          noWrap
+          sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
+        >
+          {profile}
+        </Typography>
       </Avatar>
     </Box>
   );

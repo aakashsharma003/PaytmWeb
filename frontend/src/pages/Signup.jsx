@@ -8,12 +8,17 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { server } from "../main";
+import CircularProgress from "@mui/material/CircularProgress"; // Importing CircularProgress
+import Box from "@mui/material/Box"; // Importing Box for centering the loader
+
 const Signup = () => {
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state
   const navigate = useNavigate();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     const logout = () => {
@@ -23,12 +28,32 @@ const Signup = () => {
     };
     if (token != null) logout();
   }, []);
+
   return (
-    <div className="w-screen h-screen bg-[#cbd5e1] flex justify-center items-center">
+    <div className="w-screen h-screen bg-[#cbd5e1] flex justify-center items-center relative">
+      {loading && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            zIndex: 50,
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       <div className="bg-white w-[80dvw] h-[90dvh] md:w-[50dvw] md:h-[90dvh] md:px-[1dvw] md:py-[1dvh] px-[4dvw] shadow-gray shadow-lg shadow-gray-800/70 rounded-md">
         <form
           onSubmit={async (e) => {
             e.preventDefault();
+            setLoading(true); // Show loading animation
             try {
               const res = await axios.post(`${server}/user/signup`, {
                 first_name: firstName,
@@ -45,6 +70,8 @@ const Signup = () => {
             } catch (err) {
               console.error(err);
               toast.error(err.response.data.message);
+            } finally {
+              setLoading(false); // Hide loading animation
             }
           }}
           className="w-full h-full flex justify-between flex-col py-2 px-2 "
