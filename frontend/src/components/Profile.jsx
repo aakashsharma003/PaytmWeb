@@ -1,4 +1,3 @@
-import React from "react";
 import { Avatar, Box, Typography } from "@mui/material";
 
 export const Profile = ({ profile, color, onClick }) => {
@@ -22,12 +21,12 @@ export const Profile = ({ profile, color, onClick }) => {
       <Avatar
         sx={{
           bgcolor: color,
-          width: { xs: "10vw", md: "3vw" },
-          height: { xs: "10vw", md: "3vw" },
+          // width: { xs: "10vw", md: "3vw" },
+          // height: { xs: "10vw", md: "3vw" },
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          overflow: "hidden", // To ensure text does not overflow
+          // overflow: "hidden", // To ensure text does not overflow
         }}
       >
         <Typography
