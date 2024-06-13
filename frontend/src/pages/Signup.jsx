@@ -109,7 +109,7 @@ const Signup = () => {
               setPassword(e.target.value);
             }}
             label="Password"
-            placeholder="ayushi@123"
+            placeholder="akash@123"
             type="password"
             required={"required"}
           />
