@@ -10,7 +10,10 @@ export const Appbar = ({ user, profile }) => {
   return (
     <div className="w-full h-[13dvh] flex justify-between border-b-2 border-gray-100 px-[2%] py-[2%] ">
       <div className="flex justify-center items-center text-lg font-bold">
-        PayTm App
+        <img
+          src="https://www.paytmbank.com/_next/static/media/paytmbank-logo.4ba3db09.svg"
+          alt="patm-logo"
+        />
       </div>
       {!menubutton && (
         <div className="w-[20%] flex justify-center items-center py-[2%] h-full">

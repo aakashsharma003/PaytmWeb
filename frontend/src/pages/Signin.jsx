@@ -7,8 +7,8 @@ import { server } from "../main";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import CircularProgress from "@mui/material/CircularProgress"; // Importing CircularProgress
-import Box from "@mui/material/Box"; // Importing Box for centering the loader
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
@@ -19,6 +19,7 @@ const Signin = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const logout = () => {
+      localStorage.removeItem("users");
       localStorage.removeItem("token");
       localStorage.removeItem("name");
       toast.success("logout successfully");
@@ -48,7 +49,7 @@ const Signin = () => {
           <CircularProgress />
         </Box>
       )}
-      <div className="bg-white rounded-md w-[80dvw] h-[60dvh] md:h-[70dvh] md:w-[60dvw] shadow-gray shadow-lg shadow-gray-800/70 px-[2dvw] py-[2dvh] flex flex-col justify-between">
+      <div className="bg-white rounded-md w-[80dvw] h-[60dvh] md:h-[70dvh] md:w-[60dvw] shadow-gray shadow-lg shadow-gray-800/70 px-[3vw] py-[2vh] flex flex-col justify-between ">
         <Heading label={"Signin"} />
         <InputBox
           onChange={(e) => {
