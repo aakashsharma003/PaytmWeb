@@ -1,4 +1,4 @@
-## Build a basic version of PayTM
+## Developed PayTM as a Progressive Web Application
 ## ScreenShots
 ![paytm](https://github.com/aakashsharma003/PaytmWeb/assets/122847899/c611e6ce-584e-4941-a7f7-d64c987163e4)
 
