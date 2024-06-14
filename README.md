@@ -1,5 +1,12 @@
-## Build a basic version of PayTM
-[demo2.webm](https://github.com/aakashsharma003/PaytmWeb/assets/122847899/7a15541b-acdf-4bb0-b141-9249192c9add)
+## Developed PayTM as a Progressive Web Application
+## ScreenShots
+![paytm](https://github.com/aakashsharma003/PaytmWeb/assets/122847899/c611e6ce-584e-4941-a7f7-d64c987163e4)
+
+![page2](https://github.com/aakashsharma003/PaytmWeb/assets/122847899/35b89114-92a0-4693-a3af-68bfe5218d50)
+
+![dashboard](https://github.com/aakashsharma003/PaytmWeb/assets/122847899/221ea5c3-a901-43bb-8e46-982dee0dadf3)
+
+![payment page](https://github.com/aakashsharma003/PaytmWeb/assets/122847899/32d0fb44-ad04-4003-b37a-0b0bec6ad71e)
 
 # Paytm Web
 
