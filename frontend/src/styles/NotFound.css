@@ -1,0 +1,8 @@
+.bg-paytm {
+  background: rgb(12, 39, 86);
+  background: linear-gradient(
+    90deg,
+    rgba(12, 39, 86, 1) 16%,
+    rgba(0, 178, 241, 1) 86%
+  );
+}

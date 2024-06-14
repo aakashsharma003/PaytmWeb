@@ -9,8 +9,9 @@ import useSound from "use-sound";
 import { Profile } from "../components/Profile";
 import toast from "react-hot-toast";
 import { server } from "../main";
-import CircularProgress from "@mui/material/CircularProgress"; // Importing CircularProgress
-import Box from "@mui/material/Box"; // Importing Box for centering the loader
+import CircularProgress from "@mui/material/CircularProgress";
+import "../styles/NotFound.css";
+import Box from "@mui/material/Box";
 
 const SendMoney = () => {
   const [searchParams] = useSearchParams();
@@ -59,7 +60,7 @@ const SendMoney = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center relative bg-blue-200 ">
+    <div className="bg-paytm w-screen h-screen flex justify-center items-center relative  ">
       {loading && (
         <Box
           sx={{
