@@ -59,7 +59,7 @@ const SendMoney = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center relative">
+    <div className="w-screen h-screen flex justify-center items-center relative bg-blue-200 ">
       {loading && (
         <Box
           sx={{
@@ -79,7 +79,7 @@ const SendMoney = () => {
         </Box>
       )}
       <form
-        className="w-[80vw] h-[50vh] md:w-[50vw] md:h-[60vh] bg-white px-[3vw] py-[3vh] rounded-md shadow-gray shadow-lg shadow-gray-800/70"
+        className="w-[80vw] h-[50vh] md:w-[50vw] md:h-[60vh] bg-gray-50 px-[3vw] py-[3vh] rounded-md shadow-gray shadow-lg shadow-gray-800/70 flex flex-col justify-between items-stretch"
         onSubmit={PaymentHandler}
       >
         <Heading label={"Send Money"} />
@@ -94,7 +94,7 @@ const SendMoney = () => {
           onChange={(e) => {
             setAmount(e.target.value);
           }}
-          label={"Amount (in $)"}
+          label={"Amount (in Rs)"}
           placeholder={"Enter amount"}
         />
         <Button
