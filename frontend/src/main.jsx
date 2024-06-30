@@ -6,6 +6,7 @@ import "./index.css";
 // https://paytmweb.onrender.com/api/v1
 export const server = "https://paytmweb.onrender.com/api/v1";
 
+// Register the service worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').then(registration => {
