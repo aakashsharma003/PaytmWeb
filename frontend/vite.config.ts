@@ -30,7 +30,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     ],
     start_url: '/',
     display: 'standalone',
-    background_color: '#cbd5e1'
+    background_color: '#ffffff'
   }
 }
 
