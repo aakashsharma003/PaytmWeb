@@ -1,0 +1,7 @@
+# robots.txt file for Paytm Web Application
+
+# Allow all crawlers access to all content
+User-agent: *
+Allow: /
+
+
