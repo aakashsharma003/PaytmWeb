@@ -20,7 +20,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
         src: 'Paytm-Logo.wine.png',
         sizes: '192x192',
         type: 'image/png',
-        purpose:"any"
+        purpose:"any maskable"
       },
       {
         src: 'Paytm-Logo.wine.png',
