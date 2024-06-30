@@ -11,27 +11,25 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     "https://www.paytmbank.com/_next/static/media/paytmbank-logo.4ba3db09.svg"
   ],
   manifest: {
-    name: 'Paytm Web Application',
-    short_name: 'Paytm-Web',
-    description: 'A Paytm transactions demostration website',
-    theme_color: '#cbd5e1',
+    name: 'My Vite React App',
+    short_name: 'ViteReact',
+    description: 'My awesome Vite + React application',
+    theme_color: '#ffffff',
     icons: [
       {
         src: 'not-found-image.jpg',
         sizes: '192x192',
-        type: 'image/jpeg',
-        purpose:"any"
+        type: 'image/jpeg'
       },
       {
         src: 'Paytm-Logo.wine.png',
         sizes: '512x512',
-        type: 'image/png',
-        purpose:"maskable"
+        type: 'image/png'
       }
     ],
     start_url: '/',
     display: 'standalone',
-    background_color: '#cbd5e1'
+    background_color: '#ffffff'
   }
 }
 
