@@ -15,23 +15,21 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     short_name: 'Paytm-Web',
     description: 'A Paytm PWA for demonstration of transactions on Paytm',
     theme_color: '#ffffff',
-    background_color: '#ffffff',
-    display: 'standalone',
-    start_url: '/',
     icons: [
       {
         src: 'not-found-image.jpg',
         sizes: '192x192',
-        type: 'image/jpeg',
-        purpose: 'any'
+        type: 'image/jpeg'
       },
       {
         src: 'Paytm-Logo.wine.png',
         sizes: '512x512',
-        type: 'image/png',
-        purpose: 'maskable'
+        type: 'image/png'
       }
-    ]
+    ],
+    start_url: '/',
+    display: 'standalone',
+    background_color: '#ffffff'
   }
 }
 
