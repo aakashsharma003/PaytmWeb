@@ -22,14 +22,14 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
         type: 'image/png'
       },
       {
-        src: 'not-found-image.jpg',
+        src: 'Paytm-Logo.wine.png',
         sizes: '512x512',
-        type: 'image/jpeg'
+        type: 'image/png'
       }
     ],
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff'
+    background_color: '#cbd5e1'
   }
 }
 

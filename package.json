@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "readme-md-generator": "^1.0.0"
+    "readme-md-generator": "^1.0.0",
+    "vite-plugin-pwa": "^0.20.0"
   }
 }
