@@ -8,8 +8,8 @@ export const Appbar = ({ user, profile }) => {
   const [menubutton, setmenubutton] = useState(false);
   const navigate = useNavigate();
   return (
-    <div className="w-full h-[13dvh] flex justify-between border-b-2 border-gray-100 px-[2%] py-[2%] ">
-      <div className="flex justify-center items-center text-lg font-bold">
+    <div className="w-full h-[13vh] flex justify-between border-b-2 border-gray-100 px-[3%] md:px-[2%] py-[2%] ">
+      <div className="flex justify-start items-center text-lg font-bold w-[40%] md:w-[20%]">
         <img
           src="https://www.paytmbank.com/_next/static/media/paytmbank-logo.4ba3db09.svg"
           alt="patm-logo"
@@ -17,8 +17,8 @@ export const Appbar = ({ user, profile }) => {
       </div>
       {!menubutton && (
         <div className="w-[20%] flex justify-center items-center py-[2%] h-full">
-          <div className="text-center text-[90%] bold w-full md:pl-[20%]">
-            Hii, {user}
+          <div className="text-center text-[90%] bold w-full md:px-[15%]">
+            Hii, {user.split(" ")[0]}
           </div>
           <Profile
             profile={profile}
