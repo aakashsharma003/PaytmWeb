@@ -1,6 +1,6 @@
 export const SubHeading = ({ label }) => {
   return (
-    <div className="text-[2vh] md:text-[4vh] px-[1vh] text-center text-black overflow-hidden whitespace-nowrap">
+    <div className="text-base md:text-xl px-1 text-center text-black overflow-hidden whitespace-nowrap">
       {label}
     </div>
   );
