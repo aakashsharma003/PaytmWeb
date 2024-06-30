@@ -17,9 +17,9 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     theme_color: '#ffffff',
     icons: [
       {
-        src: 'not-found-image.jpg',
+        src: 'Paytm-Logo.wine.png',
         sizes: '192x192',
-        type: 'image/jpeg'
+        type: 'image/png'
       },
       {
         src: 'Paytm-Logo.wine.png',
