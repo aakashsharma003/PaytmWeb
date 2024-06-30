@@ -24,7 +24,8 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
       {
         src: 'Paytm-Logo.wine.png',
         sizes: '512x512',
-        type: 'image/png'
+        type: 'image/png',
+        purpose:"any maskable"
       }
     ],
     start_url: '/',
