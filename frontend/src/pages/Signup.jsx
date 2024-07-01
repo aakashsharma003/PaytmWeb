@@ -49,7 +49,7 @@ const Signup = () => {
           <CircularProgress />
         </Box>
       )}
-      <div className="bg-white w-[90vw] h-[90vh] md:w-[50vw] md:h-[90vh] md:px-[3vw] md:py-[1vh] px-[5vw] shadow-gray shadow-lg shadow-gray-800/70 rounded-md">
+      <div className="bg-white w-[94vw] h-[90vh] md:w-[50vw] md:h-[90vh] md:px-[3vw] md:py-[1vh] px-[5vw] shadow-gray shadow-lg shadow-gray-800/70 rounded-md">
         <form
           onSubmit={async (e) => {
             e.preventDefault();
