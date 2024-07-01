@@ -17,13 +17,13 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     theme_color: '#ffffff',
     icons: [
       {
-        src: 'Paytm-Logo.wine.png',
+        src: 'icon.png',
         sizes: '192x192',
         type: 'image/png',
         purpose:"any maskable"
       },
       {
-        src: 'Paytm-Logo.wine.png',
+        src: 'icon.png',
         sizes: '512x512',
         type: 'image/png'
       }
