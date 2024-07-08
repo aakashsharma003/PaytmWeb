@@ -39,6 +39,10 @@ const SendMoney = () => {
         }
       );
 
+      if(res.status == 400){
+        toast.error(res.data.message);
+      }
+
       new Promise((resolve) => {
         playActive();
         setTimeout(() => {
@@ -97,6 +101,7 @@ const SendMoney = () => {
           }}
           label={"Amount (in Rs)"}
           placeholder={"Enter amount"}
+          required={"required"}
         />
         <Button
           innertext={"Initiate Transfer"}

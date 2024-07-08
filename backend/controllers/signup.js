@@ -45,7 +45,7 @@ const SignUp = async (req, res) => {
     });
     await Account.create({
       userId: newUser._id,
-      balance: Math.floor(1 + Math.random() * 10000),
+      balance: Math.floor(1 + Math.random() * 1000),
     });
     const userid = newUser._id;
     const name = first_name;

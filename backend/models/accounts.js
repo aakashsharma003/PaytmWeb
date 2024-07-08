@@ -6,7 +6,7 @@ const AccountSchema = new mongoose.Schema({
     required: true,
   },
   balance: {
-    type: Number,
+    type: float,
     required: true,
   },
 });

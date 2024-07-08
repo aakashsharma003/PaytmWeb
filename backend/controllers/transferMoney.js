@@ -1,13 +1,21 @@
 const mongoose = require("mongoose");
 const { Account } = require("../data/db");
 const { User } = require("../data/db");
+
+
 const transferMoney = async (req, res) => {
   const session = await mongoose.startSession();
 
   session.startTransaction();
 
-  const { to, amount } = req.body;
-  // if (isNaN(amount)) res.send({ message: "Pls Enter a valid Input" });
+  let { to, amount } = req.body;
+
+  if(amount?.length == 0) res.status(400).send({message:"Pls enter some amount first"});
+  
+  // console.log(amount?.length)
+  if (parseInt(amount) <= 0){ 
+    // console.log(amount);
+    return res.status(400).send({ message: "Pls Enter a valid amount" });}
   const userId = req.userId;
   const user = await User.findOne({ _id: userId });
   const name = user.first_name + " " + user.last_name;
