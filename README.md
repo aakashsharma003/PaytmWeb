@@ -39,4 +39,7 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Repo Activity
+![Paytm Web](https://repobeats.axiom.co/api/embed/d0622d18f0abb54ad7cef2a9752fa1be3694b893.svg "Repobeats analytics image")
+
 

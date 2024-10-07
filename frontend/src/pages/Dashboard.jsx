@@ -34,7 +34,7 @@ const Dashboard = () => {
     <div className="w-screen h-screen bg-white flex justify-center items-center box-border">
       <div className="bg-white w-full h-full rounded-md overflow-x-hidden">
         <Appbar user={data.name} profile={data.name[0]} />
-        <div className="w-full h-[5dvh] font-bold flex justify-start items-center p-[2%]">
+        <div className="w-full h-[5vh] font-bold flex justify-start items-center p-[2%]">
           <WalletIcon style={{ fontSize: 24, marginRight: 8 }} />{" "}
           {/* Wallet icon */}
           <span className="text-lg">Your balance:</span>

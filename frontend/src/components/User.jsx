@@ -94,7 +94,7 @@ function AllUsers({ profile, name, id }) {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-[5%] flex justify-between items-center mb-2 border-gray-300 border rounded p-2">
+    <div className="w-full h-[5%] flex justify-between items-center mb-2 border-b">
       <div className="flex items-center w-[40%]">
         <Profile
           profile={profile}

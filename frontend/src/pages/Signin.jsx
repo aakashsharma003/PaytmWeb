@@ -49,7 +49,7 @@ const Signin = () => {
           <CircularProgress />
         </Box>
       )}
-      <div className="bg-white rounded-md w-[80dvw] h-[60dvh] md:h-[70dvh] md:w-[60dvw] shadow-gray shadow-lg shadow-gray-800/70 px-[3vw] py-[2vh] flex flex-col justify-between ">
+      <div className="bg-white rounded-md w-[90vw]  h-[60vh] md:h-[70vh] md:w-[60vw] shadow-gray shadow-lg shadow-gray-800/70 px-[3vw] py-[2vh] flex flex-col justify-between ">
         <Heading label={"Signin"} />
         <InputBox
           onChange={(e) => {

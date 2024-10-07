@@ -1,6 +1,6 @@
 const Heading = ({ label }) => {
   return (
-    <div className="text-[3vh] px-[1dvw] py-[1dvw] text-center font-semibold md:text-[5vh]">
+    <div className="text-4xl font-bold px-[1vw] py-[1vh] text-center">
       {label}
     </div>
   );
